@@ -1,0 +1,6 @@
+{
+  "name": "المدرسة القرآنية حي النخيل",
+  "description": "تطبيق بسيط لمتابعة حفظ طلاب حلقة تحفيظ القرآن الكريم وتسجيل الحضور والغياب بشكل تفاعلي.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
