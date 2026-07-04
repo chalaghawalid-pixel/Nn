@@ -16,6 +16,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.automirrored.filled.TrendingUp
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -250,12 +252,18 @@ fun StudentsListScreen(
             )
         }
     ) { paddingValues ->
-        Column(
+        Box(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .background(MaterialTheme.colorScheme.background)
+                .background(MaterialTheme.colorScheme.background),
+            contentAlignment = Alignment.TopCenter
         ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .widthIn(max = 650.dp)
+            ) {
             // Elegant Welcome Header Card with dynamic stats
             Card(
                 modifier = Modifier
@@ -404,6 +412,7 @@ fun StudentsListScreen(
                     }
                 }
             }
+        }
         }
     }
 
@@ -666,7 +675,7 @@ fun StudentRowItem(
                     // Attendance rate badge
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Icon(
-                            imageVector = Icons.Default.TrendingUp,
+                            imageVector = Icons.AutoMirrored.Filled.TrendingUp,
                             contentDescription = null,
                             modifier = Modifier.size(14.dp),
                             tint = if (attendanceRate >= 80.0) Color(0xFF2E7D32) else Color(0xFFC62828)
@@ -936,7 +945,7 @@ fun StudentProfileScreen(
                         modifier = Modifier.testTag("back_button")
                     ) {
                         Icon(
-                            imageVector = Icons.Default.ArrowBack,
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "رجوع"
                         )
                     }
@@ -964,15 +973,19 @@ fun StudentProfileScreen(
         var localDailyNote by remember(todayEvaluation) { mutableStateOf(todayEvaluation?.note ?: "") }
         var localDailyRating by remember(todayEvaluation) { mutableStateOf(todayEvaluation?.rating ?: "") }
 
-        // Use a single unified LazyColumn so everything scrolls seamlessly on smaller devices,
-        // preventing any overlap, layout cuts, or scroll jams.
-        LazyColumn(
+        Box(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
                 .background(MaterialTheme.colorScheme.background),
-            contentPadding = PaddingValues(bottom = 24.dp)
+            contentAlignment = Alignment.TopCenter
         ) {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .widthIn(max = 650.dp),
+                contentPadding = PaddingValues(bottom = 24.dp)
+            ) {
             item {
                 // Interactive Profile Photo Banner
                 Box(
@@ -1730,6 +1743,7 @@ fun StudentProfileScreen(
                 )
             }
         }
+        }
     }
 
     // Delete Student Confirmation Dialog
@@ -2410,14 +2424,20 @@ fun SettingsScreen(
             )
         }
     ) { paddingValues ->
-        LazyColumn(
+        Box(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
                 .background(MaterialTheme.colorScheme.background),
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            contentAlignment = Alignment.TopCenter
         ) {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .widthIn(max = 650.dp),
+                contentPadding = PaddingValues(16.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
             // Theme selection card
             item {
                 Card(
@@ -2664,6 +2684,7 @@ fun SettingsScreen(
                     )
                 }
             }
+        }
         }
     }
 }
